@@ -1,0 +1,26 @@
+[
+  {
+    "id": 6,
+    "tweet": "Mi sexto tweet en la nueva app",
+    "usuario": "Usuario",
+    "fecha": "22-04-2022"
+  },
+  {
+    "id": 7,
+    "tweet": "Mi séptimo tweet en la nueva app",
+    "usuario": "Usuario",
+    "fecha": "25-04-2022"
+  },
+  {
+    "id": 8,
+    "tweet": "Mi octavo tweet en la nueva app",
+    "usuario": "Usuario",
+    "fecha": "17-06-2023"
+  },
+  {
+    "id": 10,
+    "tweet": "Mi decimo tweet en la nueva app",
+    "usuario": "Usuario",
+    "fecha": "17-06-2023"
+  }
+]
