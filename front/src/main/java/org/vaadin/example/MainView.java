@@ -1,5 +1,6 @@
 package org.vaadin.example;
 
+import com.nimbusds.jose.shaded.gson.Gson;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -9,7 +10,11 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.net.http.HttpClient;
 
 /**
  * A sample Vaadin view class.
@@ -32,6 +37,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 @CssImport(value = "./styles/vaadin-text-field-styles.css", themeFor = "vaadin-text-field")
 public class MainView extends VerticalLayout {
 
+    private static final String API_URL = "http://localhost:8085";
+
+    //HttpClient client = HttpClient.newBuilder().build();
+    HttpClient client = HttpClient.newBuilder().build();
+    HttpRequest request;;
+    HttpResponse response;
+
+
+    final Gson gson = new Gson();
+
+    Tweet newTweet = new Tweet();
     /**
      * Construct a new Vaadin view.
      * <p>
