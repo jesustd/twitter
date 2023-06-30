@@ -5,6 +5,8 @@ import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -14,7 +16,9 @@ import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.awt.*;
 import java.net.http.HttpClient;
+import java.util.ArrayList;
 
 /**
  * A sample Vaadin view class.
@@ -47,7 +51,20 @@ public class MainView extends VerticalLayout {
 
     final Gson gson = new Gson();
 
-    Tweet newTweet = new Tweet();
+    ArrayList<Tweet> listaTweets = new ArrayList<>();
+    Tweet AuxTweet = new Tweet();
+
+    Grid<Tweet> tweetGrid = new Grid<>(Tweet.class);
+
+    Button buttonAnadirTweet = new Button("Añadir Tweet");
+
+    Dialog dialog =new Dialog();
+
+
+
+
+
+
     /**
      * Construct a new Vaadin view.
      * <p>

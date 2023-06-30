@@ -12,21 +12,29 @@ public class TweetsControlador {
 
     public ArrayList<Tweet> AuxiTweet = new ArrayList<>();
 
-    @PostMapping(path = "/Tweet")
+    @PostMapping(path = "/Tweets")
     public ResponseEntity<ArrayList<Tweet>> nuevoTweet() {
 
         LectorJson Leer = new LectorJson();
-        ArrayList<Tweet> AuxTweet = new ArrayList<>();
-        AuxTweet=Leer.LecturaJSONsimple();
-        this.AuxiTweet = AuxTweet;
+        this.AuxiTweet = Leer.LecturaJSONsimple();
 
         return new ResponseEntity<ArrayList<Tweet>>(this.AuxiTweet, HttpStatus.CREATED);
     }
 
-    @GetMapping("/Tweet")
+    @PostMapping(path = "/Tweets/Tweet",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ArrayList<Tweet>> nuevoTweetUnico(@RequestBody Tweet nuevoTweet) {
+
+        this.AuxiTweet.add(nuevoTweet);
+
+        return new ResponseEntity<ArrayList<Tweet>>(this.AuxiTweet, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/Tweets")
     public ArrayList<Tweet> GetTweet(){return this.AuxiTweet;}
 
-    @GetMapping("/Tweet/{id}")
+    @GetMapping("/Tweets/{id}")
     public  ResponseEntity<Tweet> GetTweet(@PathVariable int id){
 
         Tweet auxDatos = new Tweet();
@@ -40,7 +48,7 @@ public class TweetsControlador {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/Tweet/{id}")
+    @PutMapping("/Tweets/{id}")
     public ResponseEntity<ArrayList<Tweet>> PutTweet(@RequestBody Tweet nuevoTweet, @PathVariable int id) {
         for (int i = 0; i < AuxiTweet.size(); i++) {
             if (AuxiTweet.get(i).getId() == id) {
@@ -54,7 +62,7 @@ public class TweetsControlador {
     }
 
 
-    @DeleteMapping("/Tweet/{id}")
+    @DeleteMapping("/Tweets/{id}")
     public ResponseEntity<ArrayList<Tweet>> DeleteTweet(@PathVariable int id){
         for (int i = 0; i < AuxiTweet.size(); i++){
             if(AuxiTweet.get(i).getId() == id){
